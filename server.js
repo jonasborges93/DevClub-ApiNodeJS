@@ -6,7 +6,12 @@ const prisma = new PrismaClient()
 
 const app  = express()
 app.use(express.json())
-app.use(cors())
+// Configurar CORS para permitir qualquer origem e métodos como POST
+app.use(cors({
+    origin: '*', // Permite todas as origens
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Permite esses métodos
+    allowedHeaders: ['Content-Type', 'Authorization'], // Cabeçalhos permitidos
+}));
 
 /**ROTA PARA LISTAR USUARIO */
 app.get('/usuarios', async (req, res) =>{
